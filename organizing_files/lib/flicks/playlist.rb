@@ -1,3 +1,4 @@
+require_relative "snackbar"
 
 class Playlist
   
@@ -19,7 +20,10 @@ class Playlist
   def play
     puts "*" * 30
     puts "#{@name}'s playlist"
-    puts @movies
+    
+    Snackbar::SNACKS.each do |snack|
+      puts "#{snack.name} for #{snack.price}"
+    end
 
     @movies.each do |movie|
   
@@ -35,6 +39,10 @@ class Playlist
         movie.thumbs_up
         puts "#{movie.title} got a thumb up"
       end
+
+      snack = Snackbar.random_snack
+
+      puts "During #{movie.title}, #{@name} ate #{snack.name} for #{snack.price}."
     end
   end
 end
